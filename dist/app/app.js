@@ -9,7 +9,12 @@ const app = (0, express_1.default)();
 const port = 3000;
 //parsers
 app.use(express_1.default.json());
-app.get('/', (req, res) => {
+//middleware
+const logger = (req, res, next) => {
+    console.log('url', req.url, 'method', req.method, 'hostname', req.hostname);
+    next();
+};
+app.get('/', logger, (req, res) => {
     res.send('Hello Dev from, another world ! i am using nodemon');
 });
 app.post('/', (req, res) => {
