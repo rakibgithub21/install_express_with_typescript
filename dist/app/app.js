@@ -40,7 +40,14 @@ app.post('/', (req, res) => {
         message: 'got data'
     });
 });
-//global error
+//for not found route
+app.all('*', (req, res) => {
+    res.status(400).json({
+        success: false,
+        message: 'Mother Fucker Route is not ont'
+    });
+});
+// for global error
 app.use((error, req, res, next) => {
     if (error) {
         res.status(400).json({

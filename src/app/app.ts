@@ -51,8 +51,16 @@ app.post('/', (req:Request, res:Response) => {
     })
 })
 
+//for not found route
+app.all('*', (req:Request, res:Response) => {
+    res.status(400).json({
+        success: false,
+        message:'Mother Fucker Route is not ont'
+    })
+})
 
-//global error
+
+// for global error
 app.use((error:any, req:Request, res:Response, next:NextFunction) => {
     if (error) {
         res.status(400).json({
